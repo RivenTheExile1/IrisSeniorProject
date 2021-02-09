@@ -2,7 +2,7 @@
 # To do: have pattern by snake like _|-|_|-|_
 # Change xfactor and yfactor to metes instad of feet
 #make code prettier with more functions
-
+#test
 import exceptions
 import math
 connection_string = "/dev/ttyAMA0"

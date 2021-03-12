@@ -16,7 +16,7 @@ import socket
 global currentlocation
 
 print("Connecting to vehicle on: %s" % (connection_string,))
-
+#testtt
 try:
     vehicle = connect(connection_string, baud=115200, wait_ready=True, heartbeat_timeout=15)
 

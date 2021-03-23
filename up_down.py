@@ -63,7 +63,7 @@ while not vehicle.armed:
     print " Waiting for arming..."
     time.sleep(1)
 print "Taking off!"
-aTargetAltitude = 10
+aTargetAltitude = 3
 vehicle.simple_takeoff(aTargetAltitude) # Take off to target altitude
 # Wait until the vehicle reaches a safe height
 i = 0

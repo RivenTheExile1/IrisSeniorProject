@@ -2,6 +2,7 @@ import pygame
 import sys
 import time
 import random
+import math
 
 
 
@@ -12,7 +13,7 @@ def search(screen, drone, target):
     #iniate at start but will update
     
     x = 10
-    y = 10
+    y = -10
     next_x = x
     next_y = y
 
@@ -20,27 +21,67 @@ def search(screen, drone, target):
 
     #search nearby area
     for i in range(0,600,20): #y 
-        next_y = y + i 
-        for j in range(0,600,20): #x 
-            next_x = x + j 
-            pixel_col = pygame.Surface.get_at(screen, (next_x, next_y))
-            print (pixel_col)
-            if pixel_col == (0,0,255,255):
-                print ("!!!!!!!!!!!!!!!!found blue at ", next_x, next_y)
-            else:
-                    print ("no blue at ", next_x, next_y)
-            #moves drone over if not at 600, or next line if at 600
+        print("nedt y", next_y)
+        print("next x", next_x)     
 
-            if next_x == 600:
-                pygame.Rect.move(drone, 0,next_y + 20)
-            else: 
-                pygame.Rect.move(drone, (next_x, next_y))
 
-            time.sleep(.5)
 
-            pygame.display.update()
+        # if and for loop handling going forward
+        if next_x == 10:
+            next_y = next_y + 20
+            for j in range(20,600,20): #x 
+
+                #gets the blue val at the next pixel                
+                next_x = x + j 
+                pixel_col = pygame.Surface.get_at(screen, (next_x, next_y))
+                print (pixel_col)
+
+                #if the value is blue print it out
+                if pixel_col == (0,0,255,255):
+                    print ("!!!!!!!!!!!!!!!!found blue at ", next_x, next_y)
+                else:
+                        print ("no blue at ", next_x, next_y)
+
+                #moves drone over if not at 600, or next line if at 600 (doesn't work!!!)
+                if next_x == 600:
+                    pygame.Rect.move(drone, 0,next_y + 20)
+                else: 
+                    pygame.Rect.move(drone, (next_x, next_y))
+
+                time.sleep(.25)
+                pygame.display.update()
+
+        # if and for loop that will handle the coming back
+        if next_x == 590:
+            print("CHECKKDFOFJDFOLFJSDOLF")
+            next_y = next_y + 20
+            for j in range(580,-10,-20): #x 
+                
+                #gets the blue val at the next pixel
+                next_x = x + j
+
+                
+                pixel_col = pygame.Surface.get_at(screen, (next_x, next_y))
+                print (pixel_col)
+
+                #if the value is blue print it out
+                if pixel_col == (0,0,255,255):
+                    print ("!!!!!!!!!!!!!!!!found blue at ", next_x, next_y)
+                else:
+                        print ("no blue at ", next_x, next_y)
+
+                #moves drone over if not at 600, or next line if at 600 (doesn't work!!!)
+                if next_x == 600:
+                    pygame.Rect.move(drone, 0,next_y + 20)
+                else: 
+                    pygame.Rect.move(drone, (next_x, next_y))
+
+                time.sleep(.25)
             
+                pygame.display.update()
+
             
+        
 
             
 
@@ -69,7 +110,7 @@ def set_up():
     target_x = random.randint(0,600)
     target_y = random.randint(0,600)
     print("target loc", target_x, target_y)
-    target = pygame.Rect(target_x, target_y,20, 20)
+    target = pygame.Rect(50,50,20,20)
 
 
     #loop that runs game

@@ -1,6 +1,14 @@
 #Just psuedo code atm
 #3/28/21
+print "Start simulator (SITL)"
+import dronekit_sitl
+sitl = dronekit_sitl.start_default()
+connection_string = sitl.connection_string()
 
+# Import DroneKit-Python
+from dronekit import  connect, VehicleMode, LocationGlobalRelative, APIException
+import time
+import socket
 import pygame, sys
 import pygame.camera
 from pygame.constants import GL_ACCUM_ALPHA_SIZE
@@ -314,15 +322,6 @@ def close():
 
 
 #drone start up/main~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-print "Start simulator (SITL)"
-import dronekit_sitl
-sitl = dronekit_sitl.start_default()
-connection_string = sitl.connection_string()
-
-# Import DroneKit-Python
-from dronekit import  connect, VehicleMode, LocationGlobalRelative, APIException
-import time
-import socket
 
 # Connect to the Vehicle.
 

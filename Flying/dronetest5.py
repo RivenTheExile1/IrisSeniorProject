@@ -3,6 +3,7 @@
 
 import exceptions
 import math
+
 connection_string = "/dev/ttyAMA0"
 
 from dronekit import connect, VehicleMode, LocationGlobalRelative, APIException
@@ -55,6 +56,8 @@ while not vehicle.armed:
     print " Waiting for arming..."
     time.sleep(1)
 print "Taking off!"
+
+
 aTargetAltitude = 10
 vehicle.simple_takeoff(aTargetAltitude) # Take off to target altitude
 # Wait until the vehicle reaches a safe height

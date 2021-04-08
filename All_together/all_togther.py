@@ -4,6 +4,7 @@ print "Start simulator (SITL)"
 import dronekit_sitl
 sitl = dronekit_sitl.start_default()
 connection_string = sitl.connection_string()
+import exceptions
 
 # Import DroneKit-Python
 from dronekit import  connect, VehicleMode, LocationGlobalRelative, APIException
@@ -61,13 +62,13 @@ def foward_backward_search_func(stream, vehicle, width_search, length_search):
             print "current location in lon, lat:", currentlocation.lon, currentlocation.lat
 
             #if we are at our desitnation
-            if coords == ((coords.lon-launchloc.lon)/xfactor,  (coords.lat-launchloc.lat)/yfactor, coords.alt-launchloc.alt):
+            if (coords.lon, coords.lat, coords.alt)*.9 < coords < 1.1*(coords.lon, coords.lat, coords.alt):
 
                 #inc leg num at end of leg
                 leg_num = leg_num + 1
                 print "didn't find blue on the way up, going to next loc"
 
-                # we didn't find any blue and we have reached the end of the leg, if we have 
+                # we didn't find any blue and we have reached the final leg so we switch the left and right value.
                 if leg_num == 3:
                     width_search = width_search * -1
                 side_search_func(stream, vehicle, width_search, length_search)
@@ -115,8 +116,9 @@ def side_search_func(stream, vehicle, width_search, length_search):
             print "current location in lon, lat:", currentlocation.lon, currentlocation.lat
 
             #test to see if we are at our final location
-            if coords == ((coords.lon-launchloc.lon)/xfactor,  (coords.lat-launchloc.lat)/yfactor, coords.alt-launchloc.alt):
+            if (coords.lon, coords.lat, coords.alt)*.9 < coords < 1.1*(coords.lon, coords.lat, coords.alt):
 
+                
                 #update what leg of the trip we are on. 1 is up, 2 is right, 3 is back, 4 is left
                 leg_num = leg_num + 1
                 print "didn't find blue on the way to the side , going to next loc"
@@ -325,6 +327,9 @@ def close():
 
 # Connect to the Vehicle.
 
+connection_string = "/dev/ttyAMA0"
+
+
 print("Connecting to vehicle on: %s" % (connection_string,))
 try:
     vehicle = connect(connection_string, baud=115200, wait_ready=True)
@@ -376,7 +381,7 @@ while not vehicle.armed:
     time.sleep(1)
 print "Taking off!"
 global aTargetAltitude
-aTargetAltitude = 2
+aTargetAltitude = 3
 vehicle.simple_takeoff(aTargetAltitude) # Take off to target altitude
 # Wait until the vehicle reaches a safe height
 i = 0
@@ -478,11 +483,12 @@ if l > 0:
     print('y', y_pix)
 
     pygame.draw.circle(display, (255, 0, 0), (int(x_pix), int(y_pix)), 5, 0)
-    
-    go_to_func(vehicle, stream) #will create this in future
+    print "We found some blue"
+    go_to_func(vehicle, stream) 
 else:
     print("nothing to report sir")
-    foward_backward_search_func(vehicle, width_search, length_search) #will create this in the future.
+    print "going to search"
+    foward_backward_search_func(stream, vehicle, width_search, length_search)
 
 stream.seek(0)
 stream.truncate()

@@ -15,7 +15,7 @@ Senior Project Spring 2021.
 [x] updown drone
 (drone didnt wanna fly)
 
-[] attach camera
+[x] attach camera
 [x] see how far the camera lets us view
 (camera didnt fit in to the socket. Current camera can see 50m, we will see about the new one.)
 
@@ -25,9 +25,9 @@ Senior Project Spring 2021.
 [] updown drone
 
 3/29 - 4/2
-[] sketch high level sudo code for search -> move to target or just move to target
+[x] sketch high level sudo code for search -> move to target or just move to target
 [] run hello_drone.py
-[] scan iris
+[x] scan iris
 
 4/5 - 4/9
 [] last week....

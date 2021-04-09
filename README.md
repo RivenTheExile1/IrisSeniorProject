@@ -27,8 +27,8 @@ Senior Project Spring 2021.
 3/29 - 4/2
 [x] sketch high level sudo code for search -> move to target or just move to target
 [] run hello_drone.py
-[x] scan iris
+[x] scan iris (all good)
 
 4/5 - 4/9
 [] last week....
-
+[] flight on 4/8/2021 ( welll the saftey features stopped us. We are gonna turn off our safetry features )

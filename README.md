@@ -33,8 +33,8 @@ Senior Project Spring 2021.
 [x] last week....
 
 4/12 - 4/16
-[] charge bats and retry
+[x] charge bats and retry
 [] disassmeble and re-seat connection son cable connect gps to pixhawk
 [] if ^ == doesn't work; disable pre-arm checks (ensure gps values are okay)
-[] take measurements finish sketching dropping mech
+[x] take measurements finish sketching dropping mech
 

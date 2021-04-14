@@ -30,5 +30,11 @@ Senior Project Spring 2021.
 [x] scan iris (all good)
 
 4/5 - 4/9
-[] last week....
-[] flight on 4/8/2021 ( welll the saftey features stopped us. We are gonna turn off our safetry features )
+[x] last week....
+
+4/12 - 4/16
+[] charge bats and retry
+[] disassmeble and re-seat connection son cable connect gps to pixhawk
+[] if ^ == doesn't work; disable pre-arm checks (ensure gps values are okay)
+[] take measurements finish sketching dropping mech
+

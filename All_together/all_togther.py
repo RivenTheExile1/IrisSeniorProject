@@ -495,3 +495,126 @@ stream.truncate()
 
 pygame.display.update()
 
+<<<<<<< HEAD
+=======
+
+
+def foward_backward_search_func(stream, vehicle, width_search, length_search):
+
+    currentlocation = vehicle.location.global_relative_frame
+    launch_loc = currentlocation
+    x = width_search
+    y = 0
+    print "Searching"
+    print "Starting loc:", launch_loc
+    xfactor=1/298171.5253016029
+    yfactor=1/363999.33433628065
+    x2=(x*xfactor)+currentlocation.lon
+    y2=(y*yfactor)+currentlocation.lat
+    coords=LocationGlobalRelative(y2, x2, z)
+    print "Going to: ", (coords.lon-launchloc.lon)/xfactor, ", ", (coords.lat-launchloc.lat)/yfactor, ", ", coords.alt-launchloc.alt
+
+
+    #will go to cords untill it spots blue
+    while True:
+        vehicle.simple_goto(coords)
+        if True == blue_search(stream):
+            go_to_func(stream, vehicle)
+            print "found blue"
+            break
+        print "current location in lon, lat:", currentlocation.lon, currentlocation.lat
+        if coords == ((coords.lon-launchloc.lon)/xfactor,  (coords.lat-launchloc.lat)/yfactor, coords.alt-launchloc.alt)):
+            leg_num = leg_num + 1
+            print "didn't find blue on the way up, going to next loc"
+
+            side_search_func(stream, vehicle, length_search)
+            
+        time.sleep(.5)
+
+        
+def side_search_func(stream, vehicle, width_search, length_search):
+
+    currentlocation = vehicle.location.global_relative_frame
+    launch_loc = currentlocation
+    x = width_search
+    y = 0
+    print "Searching"
+    print "Starting loc:", launch_loc
+    xfactor=1/298171.5253016029
+    yfactor=1/363999.33433628065
+    x2=(x*xfactor)+currentlocation.lon
+    y2=(y*yfactor)+currentlocation.lat
+    coords=LocationGlobalRelative(y2, x2, z)
+    print "Going to: ", (coords.lon-launchloc.lon)/xfactor, ", ", (coords.lat-launchloc.lat)/yfactor, ", ", coords.alt-launchloc.alt
+
+
+    #will go to cords untill it spots blue
+    while True:
+        vehicle.simple_goto(coords)
+        if True == blue_search(stream):
+            go_to_func(stream, vehicle)
+            print "found blue"
+            break
+        print "current location in lon, lat:", currentlocation.lon, currentlocation.lat
+        if coords == ((coords.lon-launchloc.lon)/xfactor,  (coords.lat-launchloc.lat)/yfactor, coords.alt-launchloc.alt)):
+            leg_num = leg_num + 1
+            print "didn't find blue on the way to the side , going to next loc"
+            if leg_num == 4:
+                landing_func(vehicle)
+            foward_backward_search_func(stream, vehicle, length_search)
+
+
+            
+        time.sleep(.5)
+
+            # 
+    
+def landing_func(vehicle):
+    print "Landing"
+    vehicle.mode = VehicleMode("LAND")
+    while i<18:
+        time.sleep(0.5)
+        currentlocation = vehicle.location.global_relative_frame
+        print "Location: ", currentlocation.lon, " ", currentlocation.lat, " ", currentlocation.alt, " Rloc: ", (currentlocation.lon-launchloc.lon)/xfactor, ", ", (currentlocation.lat-launchloc.lat)/yfactor, ", ", currentlocation.alt-launchloc.alt
+        i=i+1
+    vehicle.close()
+
+
+def blue_search(stream):
+
+    #iterate over all pix
+    for y in range(h):
+        for x in range(w):
+            
+            #get pixs
+            r_vals = stream.array[y,x,0]
+            g_vals = stream.array[y,x,1]
+            b_vals = stream.array[y,x,2]
+
+            if b_vals > g_vals and b_vals > r_vals and b_vals > 175:
+                x_pix += x 
+                y_pix += y 
+
+                l += 1
+
+
+
+    if l > 0:
+        #calc the mean 
+        x_pix/=l
+        y_pix/=l
+        print('x', x_pix)
+        print('y', y_pix)
+        return True
+    else:
+        return False
+
+        
+
+
+def close():
+    pygame.quit()
+    sys.exit()
+
+
+>>>>>>> 08e41f8... no update

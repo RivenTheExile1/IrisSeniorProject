@@ -18,6 +18,7 @@ import picamera.array
 
 global leg_num
 leg_num = 0
+<<<<<<< HEAD
 
 #functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~``
 
@@ -214,6 +215,14 @@ def go_to_func(vehicle, stream):
         over = over_blue(vehicle, stream)
 
     landing_func(vehicle)
+=======
+# ihate github sometimes
+#drone start up~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+print "Start simulator (SITL)"
+import dronekit_sitl
+sitl = dronekit_sitl.start_default()
+connection_string = sitl.connection_string()
+>>>>>>> 1c3572d... aggg
 
 
 

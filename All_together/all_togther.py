@@ -152,20 +152,40 @@ def go_to_func(vehicle, stream):
         width_linear_fov = .95
         length_linear_fov = .74
 
+        #will use these numbers to calculate what is considered under the drone or the "origin" of out new cordinate system.
+        drone_width = 2.23
+        drone_length = 1.6
+
         #this should give us how big of an area we can see with the camera
         width_linear_fov_at_target_alititude = width_linear_fov * aTargetAltitude
         length_linear_fov_at_target_altitude = length_linear_fov * aTargetAltitude
         
-        #we know resolution is 700 x 500 so devide how much space we see by how many pixel to see how much space is in a pixel
-        width_ft_ppx = width_linear_fov_at_target_alititude/700
-        length_ft_ppx = length_linear_fov_at_target_altitude/500
+
+
+        #we know resolution is 350 x 250 so devide how much space we see by how many pixel to see how much space is in a pixel
+        width_ft_ppx = width_linear_fov_at_target_alititude/350
+        length_ft_ppx = length_linear_fov_at_target_altitude/250
+
+        #how much space Iris take up on the camera
+        area_under_drone_width = drone_width / (1 / width_ft_ppx) #same as mult drone_width * px_pft
+        area_under_drone_length = drone_length / (1 / length_ft_ppx)
+
+        #creating what the area under the drone is in px cord system
+        #ori = (((174 - (area_under_drone_width / 2)), (174 + (area_under_drone_width / 2))), (124 - (area_under_drone_length / 2 )), (124 + (area_under_drone_length / 2 )))
+        
+        #origin
+        ori = (174, 124)
 
         #update x_pix and y_pix loc just incase and everytime
         x_pix, y_pix = pix_loc(stream)
 
+        #take the ((x_blue, y_ori) - (x_ori, y_blue) = distance to travel in pixels)
+        x_pix_dist = x_pix - ori[0]
+        y_pix_dist = ori[1] - y_pix
+
         #get the physical location by taking how wide the screen is in ft/ppx x px giving us feet away
-        location_x = width_ft_ppx * x_pix
-        location_y = length_ft_ppx * y_pix 
+        location_x = width_ft_ppx * x_pix_dist
+        location_y = length_ft_ppx * y_pix_dist
 
 
         #go to the change in x
@@ -223,8 +243,8 @@ def go_to_func(vehicle, stream):
 
 #returns (x,y) of blue on screen.
 def pix_loc(stream):
-    w = 700
-    h = 500
+    w = 350
+    h = 250
     for y in range(h):
         for x in range(w):
             
@@ -406,10 +426,10 @@ vehicle.airspeed = 10
 #start of vision ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #width and height of the screen
-width = 700
-height = 500
+width = 350
+height = 250
 
-resolution = (700,500)
+resolution = (350,350)
 
 #get the ft/px which will help with getting where the blue is
 
@@ -423,8 +443,7 @@ pygame.init()
 pygame.camera.init()
 
 #set up for main video
-display = pygame.display.set_mode((width,height),0,32)
-pygame.display.set_caption("Blob Tracker")
+
 
 
 
@@ -435,7 +454,6 @@ camera.resolution = resolution
 camera.vflip = True
 
 #preview so we can see whats beeing seen.
-camera.start_preview(fullscreen=False, window=(100,20, 640, 480))
 
 
 x_pix = 0
@@ -443,7 +461,6 @@ y_pix = 0
 l = 0
 
 
-display.fill((255,255,255))
 for event in pygame.event.get():
     if event.type == pygame.QUIT:
         close()
@@ -482,7 +499,6 @@ if l > 0:
     print('x', x_pix)
     print('y', y_pix)
 
-    pygame.draw.circle(display, (255, 0, 0), (int(x_pix), int(y_pix)), 5, 0)
     print "We found some blue"
     go_to_func(vehicle, stream) 
 else:

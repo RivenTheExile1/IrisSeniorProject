@@ -238,12 +238,6 @@ def go_to_func(vehicle, stream):
 =======
 # ihate github sometimes
 #drone start up~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-print "Start simulator (SITL)"
-import dronekit_sitl
-sitl = dronekit_sitl.start_default()
-connection_string = sitl.connection_string()
->>>>>>> 1c3572d... aggg
-
 
 
 
@@ -355,6 +349,12 @@ def close():
 #drone start up/main~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Connect to the Vehicle.
+print "Start simulator (SITL)"
+import dronekit_sitl
+sitl = dronekit_sitl.start_default()
+connection_string = sitl.connection_string()
+
+
 
 connection_string = "/dev/ttyAMA0"
 

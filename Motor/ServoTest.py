@@ -2,7 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time
-import keyboard
+
 
 GPIO.setwarnings(False)
 servoPIN = 17 #pin i chose

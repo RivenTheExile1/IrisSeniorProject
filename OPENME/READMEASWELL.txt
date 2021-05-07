@@ -53,7 +53,7 @@ and the aforementioned files in Flying.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ My senior project ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-I worked on a bit during my senior project. I am gonna break this section in to 6 sections, 
+I worked on a bit during my senior project. I am gonna break this section in to 6 subsections, 
 Flying, vision, motor, simulation, all together and hardware. Lets start with....
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ Hardware ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -68,9 +68,63 @@ Thats particularly it when it comes to what hardware modifactions I made.
 ~~~~~~~~~~~~~~~~~~~~ Vision ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Iris actually came with a thermal camera. During the fall of 2020 I had a rgb camera and Dr.Kelliher and I decided it would be better to use that
-and look for a colored target. Image blobbing isn't too hard to compute. While my code is super simple, it works! In the /Vision you find: Blob3_11, drone
+and look for a colored target. Image blobbing isn't too hard to compute. While my code is super simple, it works! In the /Vision you find: Blob3_11,
+Drone_Blob4_15, Old_Blob3_8, Old_Blobv2, Old_cambimag3_17_21, Old_ImageBlobbing, Old_VIB_v1_10_06, not all of these files are relevant ( Some are actually empty....)
 
+Old_VIB_v1_10_06, Old_ImageBlobbing, and Old_Blobv2 are empty/ a few  lines of code. They are still in here because I wanted to keep all files I toucher when working 
+on my senior project or realted to it. You can completely ignore these files if you want.
+Old_cambimag3_17_21 was an older version of vision processing from Cambridge. I think it required python3 so I stopped using it.
+Blob3_11 will not only does the image blobbing but will also display to the screen what the camera sees. 
+Drone_Blob4_15 does the same exact thing as Blob3_11 with out the display. this is because you need another program or something when you 
+ssh in to the pi and i just didn't care to do that.
+Old_Blob3_8 does almost the same thing as 3_11 minus a couple print statements.
 
+~~~~~~~~~~~~~~~ Simulation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+In this there is a simple pygame program that just simulates iris looking for a blue square in a snake pattern. I honestly didn't use much of 
+this code in my final files.
 
- 
+~~~~~~~~~~~~~~~~~~~~~~ Motor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Old_servo_motor_test_v1 is an old file that really doesnt do alot. I don't remember what it does actually or even if it works for
+the motor we are using now. Sometimes servos can be super annoying. ServoTest is the file that actually works and can turn to certain degrees.
+As you will see there is a file that I made in tinkercad that shows how the dropping mechanism is supposed to work.
+Its not to hard, one of the parts cover the well and the well is connected to the motor and turns.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Flying ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So as I have stated before that I was handed dronetest, dronetest3, and drontest5. dronetest5 is the only one that have run before and it runs the 
+drone in a 20 x 20 feet square. This code runs perfectly I don't know about the other. The first code I wrote was Drone_test_search_v.2
+
+Drone_test_search_v.2's base is very similiar to dronetest5. Drone_test_search_v.2 tells the drone to move in a snake pattern instead of a square. 
+Drone_test_search_v.2 was the code that was running when the drone crashed. I believe that i fixed the file after it crashed and it should be working 
+fine. but don't bet your money on it. Drone_test_search_v.3 is very similiar to v.2 but i can't figure out what is really different about it.
+But since its quiet similiar to v.2. You may not want to run it....
+
+hello_drone and up_down are two files to just see if the drone can turn on and can go up and down respectively.  You can find the file 
+hello_drone in dronekit's documentaiton  https://dronekit-python.readthedocs.io/en/latest/. ( This is jus the genaric link ). 
+
+I was not able to get Iris to fly before my senior project was complete. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~ All Together ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So as you can see there is a directory called All_together. The directory contains everything that is necessary for the drone to run. All these files
+are supposed to be in their final forms. AT_Blob3_11 is the essential the same as Vision/Blob3_11. There is also a similiar version of this file in 
+all_together. Iris_vision_simulation is also the same as the samely named file in the siumlation directory.
+
+the all_together file is the code I would rune to make the drone search in a square, scan for blue along the way, and if it finds the blue go to it.
+If it doesn't find the blue then it will just land after completing the square. This file should be well commented but if you do have any questions
+don't be afraid to contact me.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~ Where I left off ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So when Iris the final time I ran Iris using code I was getting an error that the heartbeat doesn't exist. This will make the code timeout.
+I found some documentation that said to update firmware using Qgroundcontrol http://qgroundcontrol.com/ and that didn't seem to work. I was 
+also uding APMPlanner2 to check on the values that the drone was giving me and I couldn't get anything meaningful.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+That seems to be everything I can think of. 
+
+Thank you,
+Connor F.

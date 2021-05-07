@@ -1,4 +1,4 @@
-# IrisSeniorProject
+# IrisSeniorProject See OPENME
 Senior Project Spring 2021.
 2/22 - 2/27
 [] I dont remember this far back....

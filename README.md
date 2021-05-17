@@ -38,3 +38,6 @@ Senior Project Spring 2021.
 [] if ^ == doesn't work; disable pre-arm checks (ensure gps values are okay)
 [x] take measurements finish sketching dropping mech
 
+
+Example
+
